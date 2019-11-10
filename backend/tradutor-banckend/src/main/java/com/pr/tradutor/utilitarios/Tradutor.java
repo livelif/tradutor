@@ -21,7 +21,7 @@ public class Tradutor {
         Document doc = Jsoup.connect(urlDicionario).get();
         
         Elements tipos = pegarElementoUsandoClass("pos dpos", doc);
-        Elements definicoes = pegarElementoUsandoClass("def ddef_d", doc);
+        Elements definicoes = pegarElementoUsandoClass("def ddef_d db", doc);
         Elements exemplos = pegarElementoUsandoClass("eg deg", doc);
         Elements traducoes = pegarElementoUsandoClass("trans dtrans dtrans-se ", doc);
 
@@ -40,7 +40,7 @@ public class Tradutor {
                 String tipo = tipos.get(i).text();
                 String definicao = definicoes.get(index).text();
                 String exemplo = exemplos.get(index).text();
-                String traducao = traducoes.get(index).ownText() + "\n";
+                String traducao = traducoes.get(index).ownText();
                 lastTraducao = traducoes.get(index).ownText();
                 String urlDaImagem = CarregadorDeUrlDeImagens.obterUrlDaImagemUsando(traducao);
                 traducoesDaPalavra.add(new TraducaoDaPalavra(tipo, definicao, exemplo, traducao, urlDaImagem));

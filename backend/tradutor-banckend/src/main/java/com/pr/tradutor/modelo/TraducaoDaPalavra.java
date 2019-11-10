@@ -24,8 +24,8 @@ public class TraducaoDaPalavra {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Tipo: " + tipo + "\nDefinica: " + definicao + "\nExemplo " + exemplo +
-				"\n traducao: " + traducao + "\nUrl: " + urlImagem;
+		return "{ \n\"Tipo\": \"" + tipo + "\",\n\"Definicao\": \"" + definicao + "\",\n\"Exemplo\": \"" + exemplo +
+				"\",\n\"traducao\": \"" + traducao + "\",\n\"Url\": \"" + urlImagem + "\"\n}";
 	}
 	
 	public JSONObject gerarJsonDaPalavra() {
