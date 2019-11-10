@@ -1,4 +1,4 @@
-package com.pr.utilitarios;
+package com.pr.tradutor.utilitarios;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -10,7 +10,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import com.pr.modelo.TraducaoDaPalavra;
+import com.pr.tradutor.modelo.TraducaoDaPalavra;
 
 public class Tradutor {
 	
