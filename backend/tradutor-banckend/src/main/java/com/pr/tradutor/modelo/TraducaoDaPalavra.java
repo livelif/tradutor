@@ -1,9 +1,9 @@
-package com.pr.modelo;
+package com.pr.tradutor.modelo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.pr.objetosnulos.JsonNuloDaPalavraTraduzida;
+import com.pr.tradutor.objetosnulos.JsonNuloDaPalavraTraduzida;
 
 public class TraducaoDaPalavra {
 	private String tipo;
