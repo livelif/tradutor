@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -43,23 +42,13 @@ public class Tradutor {
                 String exemplo = exemplos.get(index).text();
                 String traducao = traducoes.get(index).ownText();
                 lastTraducao = traducoes.get(index).ownText();
-                JSONObject doJson = CarregadorDeUrlDeImagens.obterJsonDa(traducao);
-                String urlDaImagem = pegar("link", doJson);
-                String descricaoDaImagem = pegar("title", doJson);
-                traducoesDaPalavra.add(new TraducaoDaPalavra(tipo, definicao, exemplo, traducao, urlDaImagem, descricaoDaImagem));
+                String urlDaImagem = CarregadorDeUrlDeImagens.obterUrlDaImagemUsando(traducao);
+                traducoesDaPalavra.add(new TraducaoDaPalavra(tipo, definicao, exemplo, traducao, urlDaImagem));
                 i++;
             }           
             
         }
         return traducoesDaPalavra;
-	}
-	
-	private static String pegar(String chaveDoItem, JSONObject doJson) {
-		
-		String valorDoItemJson = doJson.getJSONArray("items").get(0).toString();
-	        
-        JSONObject itemJson = new JSONObject(valorDoItemJson);
-        return itemJson.getString(chaveDoItem);
 	}
     
     private static Elements pegarElementoUsandoClass(String classe, Document doc) {
