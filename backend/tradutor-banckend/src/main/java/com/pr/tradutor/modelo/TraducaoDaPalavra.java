@@ -11,21 +11,24 @@ public class TraducaoDaPalavra {
 	private String exemplo;
 	private String traducao;
 	private String urlImagem;
+	private String descricaoDaImagem;
 	
-	public TraducaoDaPalavra(String tipo, String definicao, String exemplo, String traducao, String urlImagem) {
+	public TraducaoDaPalavra(String tipo, String definicao, String exemplo, String traducao, String urlImagem, 
+			String descricaoDaImamge) {
 
 		this.tipo = tipo;
 		this.definicao = definicao;
 		this.exemplo = exemplo;
 		this.traducao = traducao;
 		this.urlImagem = urlImagem;
+		this.descricaoDaImagem = descricaoDaImamge;
 	}
 		
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "{ \n\"Tipo\": \"" + tipo + "\",\n\"Definicao\": \"" + definicao + "\",\n\"Exemplo\": \"" + exemplo +
-				"\",\n\"traducao\": \"" + traducao + "\",\n\"Url\": \"" + urlImagem + "\"\n}";
+				"\",\n\"traducao\": \"" + traducao + "\",\n\"Url\": \"" + urlImagem + "\",\n\"descricaoImagem\": \"" + descricaoDaImagem + "\"\n}";
 	}
 	
 	public JSONObject gerarJsonDaPalavra() {

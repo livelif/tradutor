@@ -15,7 +15,12 @@ public class CarregadorDeUrlDeImagens {
     private static final String CX = "";
 	private CarregadorDeUrlDeImagens() {};
 	
-    public static String obterUrlDaImagemUsando (String traducao) throws MalformedURLException, IOException, JSONException {
+    public static JSONObject obterJsonDa (String traducao) throws MalformedURLException, IOException, JSONException {
+    	
+    	if (palavraTemEspaçoEmBranco(traducao)) {
+    		traducao = formatarEspaçoEmBrancoParaSerEntendivelNaUrl(traducao);
+    	}
+    	
         String fileType = "png,jpg";
         String searchType = "image";
         URL url = new URL("https://www.googleapis.com/customsearch/v1?key=" + KEY_GOOGLE_API + "&cx=" + CX + "&q=" + traducao + "&fileType=" + fileType + "&searchType=" + searchType + "&alt=json");
@@ -26,14 +31,8 @@ public class CarregadorDeUrlDeImagens {
         BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
         String valor = obterStringDoBuffered(br);
         
-        JSONObject json = new JSONObject(valor);
-        String valorDoItemJson = json.getJSONArray("items").get(0).toString();
-        
-        JSONObject itemJson = new JSONObject(valorDoItemJson);
-        String string = itemJson.getString("link");
-        
         conn.disconnect();
-        return string;
+        return new JSONObject(valor);
     }
     
     private static String obterStringDoBuffered(BufferedReader br) throws IOException {
@@ -46,5 +45,13 @@ public class CarregadorDeUrlDeImagens {
         }
         
         return bff.toString();
+    }
+    
+    public static boolean palavraTemEspaçoEmBranco(String palavra) {
+    	return palavra.contains(" ");
+    }
+    
+    public static String formatarEspaçoEmBrancoParaSerEntendivelNaUrl(String palavra) {
+    	return palavra.replaceAll(" ", "%20");
     }
 }
