@@ -16,6 +16,11 @@ public class CarregadorDeUrlDeImagens {
 	private CarregadorDeUrlDeImagens() {};
 	
     public static String obterUrlDaImagemUsando (String traducao) throws MalformedURLException, IOException, JSONException {
+    	
+    	if (palavraTemEspaçoEmBranco(traducao)) {
+    		traducao = formatarEspaçoEmBrancoParaSerEntendivelNaUrl(traducao);
+    	}
+    	
         String fileType = "png,jpg";
         String searchType = "image";
         URL url = new URL("https://www.googleapis.com/customsearch/v1?key=" + KEY_GOOGLE_API + "&cx=" + CX + "&q=" + traducao + "&fileType=" + fileType + "&searchType=" + searchType + "&alt=json");
@@ -46,5 +51,13 @@ public class CarregadorDeUrlDeImagens {
         }
         
         return bff.toString();
+    }
+    
+    public static boolean palavraTemEspaçoEmBranco(String palavra) {
+    	return palavra.contains(" ");
+    }
+    
+    public static String formatarEspaçoEmBrancoParaSerEntendivelNaUrl(String palavra) {
+    	return palavra.replaceAll(" ", "%20");
     }
 }
