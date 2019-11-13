@@ -1,24 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+import api from './services/api'
+
 import './App.css';
+
+import logo from './assets/logo.png'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="container">
+      <img src={logo} alt="Spargi - Tradutor"/>
+
+      <div className="content">
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Traduza <strong>palavras desconhecidas</strong> para o portugues de forma <strong>rapida e eficiente!</strong>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+        <form>
+          <label htmlFor="text">Palavra:</label>
+          <input 
+            type="text" 
+            id="palavra" 
+            placeholder="Digite a palavra a ser traduzida"
+          />
+
+          <button className="btn" type="submit">Traduzir</button>
+        </form>
+      </div>
     </div>
   );
 }
